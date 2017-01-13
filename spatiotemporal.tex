@@ -1,0 +1,122 @@
+\documentclass[3p]{elsarticle}
+\usepackage{ae,aecompl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{pst-plot}
+\usepackage{tikz}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{float}
+\parskip=0pt
+
+\begin{document}
+
+
+\begin{frontmatter}
+
+\title{Title}
+\cortext[cor]{Corresponding author}
+\author[akiss]{Andr\'{a}s Kiss\corref{cor}}
+\address[akiss, gnagy]{Department of General and Physical Chemistry, Faculty of Sciences, University of P\'{e}cs, 7624 P\'{e}cs, Ifj\'{u}s\'{a}g \'{u}tja 6, Hungary}
+\address[akiss, gnagy]{J\'{a}nos Szent\'{a}gothai Research Centre, University of P\'{e}cs, 7624 P\'{e}cs, Ifj\'{u}s\'{a}g \'{u}tja 20, Hungary}
+\ead{akiss@gamma.ttk.pte.hu}
+\author[gnagy]{G\'{e}za Nagy}
+\ead{g-nagy@gamma.ttk.pte.hu}
+
+\begin{abstract}
+Abstract
+\end{abstract}
+\begin{keyword}
+	keyword1 \sep keyword2 \sep keyword3
+\end{keyword}
+\end{frontmatter}
+
+\section{Introduction}
+Citation \cite{artefacts}.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[xmin=-1,xmax=11,ymin=-0.1,ymax=1.1,xlabel={time (RC)}, ylabel={normalized potential difference},no markers,samples=50,grid=both]
+        \addplot[domain=0:5, black] {1-exp(-x)};
+        \addplot[domain=-1:0, red] {0};
+        \draw [color=red, dashed] (10,10) -- (10,110);
+        \addplot[domain=0:5, red] {1};
+        \addplot[domain=5:11, black] {exp(-x+5)};
+        \draw [color=red, dashed] (60,10) -- (60,110);
+        \addplot[domain=5:11, red] {0};
+        \draw [color=red, fill=white] (10,10) circle [radius=0.1cm];
+        \draw [color=red, fill=white] (10,110) circle [radius=0.1cm];
+        \draw [color=red, fill=red] (10,60) circle [radius=0.1cm];
+        \draw [color=red, fill=white] (60,10) circle [radius=0.1cm];
+        \draw [color=red, fill=white] (60,110) circle [radius=0.1cm];
+        \draw [color=red, fill=red] (60,60) circle [radius=0.1cm];
+        \draw [color=black, fill=black] (20,73.2) circle [radius=0.1cm] node[right] {0.632};
+        \draw [color=black, fill=black] (40,105) circle [radius=0.1cm] node[below] {0.95};
+        \draw [color=black, fill=black] (70,46.8) circle [radius=0.1cm] node[right] {0.368};
+        \draw [color=black, fill=black] (90,15) circle [radius=0.1cm] node[above] {0.05};
+\end{axis}
+\end{tikzpicture}
+\caption[Charging and discharging the series $RC$ circuit.]{Charging and discharging the series $RC$ circuit.
+Red: normalized input voltage ($V_{in}$) to the series $RC$ circuit, two consecutive \emph{Heaviside step functions}, the second one is inversed and shifted $5RC$ to the right.
+Black: normalized output voltage ($V_{out}$) of the series $RC$ circuit.}
+\label{fig:charge_discharge}
+\end{figure}
+
+\section{Theory}
+Eq. \ref{eq:rc} describes the transient cell response when the measuring electrode is brought to contact with a solution of different analyte activity.
+
+\begin{equation}
+\label{eq:rc}
+	E_{cell}(t) = E_{cell}(\infty) + [E_{cell}(0) - E_{cell}(\infty)]e^{-t/RC}
+\end{equation}
+
+\section{Material and methods}
+\section{Results and discussion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIGURE EXAMPLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\s{0.25}
+\begin{figure}
+\centering
+% trim = top left bottom right
+\includegraphics[trim = 10mm 20mm 0mm 10mm, clip, width=\s\textwidth, angle=-90]{gnuplot_2d.eps}\includegraphics[trim = 10mm 20mm 0mm 10mm, clip, width=\s\textwidth, angle=-90]{gnuplot_2d.eps}\includegraphics[trim = 10mm 20mm 0mm 10mm, clip, width=\s\textwidth, angle=-90]{gnuplot_2d_deconvoluted.eps}
+\caption{Caption.}
+\label{fig:label1}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLE EXAMPLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}
+                \caption{Comparison of the scanning algorithms.}
+                \label{table:comp}
+                \centering
+                \begin{tabular}{r c c c}
+                        Algorithm & Number of sampling points & Total scan time (s) & Mean squared error \\
+                        \hline
+                        Meander & 441 & 440 & $2.75\times 10^{-2}$ \\
+                        Fast comb & 441 & 520  & $2.07\times 10^{-2}$ \\
+                        Comb & 441 & 881 & $2.75\times 10^{-2}$ \\
+                        Web & 110 & 109 & $9.63\times 10^{-3}$ \\
+                        Arc & 341 & 340 & $2.95\times 10^{-3}$ \\
+
+                \end{tabular}
+
+\end{table}
+
+\section{Conclusions}
+\section*{Acknowledgements}
+This research was supported by the European Union and the State of Hungary, co-financed by the European Social Fund in the framework of T\'{A}MOP-4.2.4.A/ 2-11/1-2012-0001 'National Excellence Program' and T\'{A}MOP-4.2.2.A-11/1/KONV-2012-0065.
+
+\section*{References}
+
+\begin{thebibliography}{5}
+
+\bibitem{artefacts}P. J. Eaton, P. West. Atomic force microscopy. Vol. 10. Oxford: Oxford University Press, 2010.
+
+\end{thebibliography}
+
+\end{document}
