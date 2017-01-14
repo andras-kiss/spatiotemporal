@@ -1,4 +1,4 @@
-rm *.pdf
+#rm *.pdf
 rm *.eps
 rm *.log
 rm *.aux
