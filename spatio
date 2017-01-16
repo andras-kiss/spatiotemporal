@@ -1,0 +1,39 @@
+set size square
+set pm3d map
+set dgrid3d 600, 60, 10 gauss 70, 70
+#set pm3d interpolate 3,0
+set term postscript enhanced color
+set xlabel "X / {/Symbol m}m"
+set ylabel "Y / {/Symbol m}m"
+set cblabel "E vs. Ag/AgCl/10^{-3}M NaCl / mV
+#set palette rgbformulae -30, -31, -32
+set palette rgbformulae 22, 13, -31 # quickgrid
+#set palette rgbformulae 33, 13, 10 # rainbow
+
+
+# ************************************ SPATIOTEMPORAL PLOT ************************************
+
+
+#set dgrid3d 21, 21, 10 gauss 70, 70
+#set pm3d interpolate 3,3
+set view map
+set size ratio 1
+set cbrange [-0.4:0.2]
+set yrange [0:6000]
+set xrange [0:300]
+#unset xtics
+#unset ytics
+#set cblabel offset 0,0
+#set ylabel offset 0,0
+#set xlabel offset 0,0
+
+#set object 1 rect from graph 0, graph 0 to graph 1, graph 1 back
+#set object 1 rect fc rgb "black" fillstyle solid 1.0
+
+set out "test.eps"
+#splot "test.txt" using 1:2:3 with points pointtype 5 pointsize 1 palette linewidth 30
+splot "test.txt"
+
+set out "test_deconvoluted.eps"
+#splot "test.txt" using 1:2:3 with points pointtype 5 pointsize 1 palette linewidth 30
+splot "test_deconvoluted.txt"

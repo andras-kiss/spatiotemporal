@@ -1,12 +1,12 @@
-program diffusion
+program deconvolution
 implicit none
 
-integer :: i, j, stat
-real rc, e0, conv
+integer :: stat
+real rc, e0, conv, i, j
 
 rc=0.8
-open(1,file='gnuplot_2d.txt')
-open(2,file='gnuplot_2d_deconvoluted.txt')
+open(1,file='test.txt')
+open(2,file='test_deconvoluted.txt')
 read(1, *) i, j, e0
 do
    read(1, *, iostat=stat) i, j, conv
@@ -17,4 +17,4 @@ end do
 close(1) 
 close(2)
 
-end program diffusion
+end program deconvolution

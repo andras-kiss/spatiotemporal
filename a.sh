@@ -1,6 +1,7 @@
 gfortran deconvolution.F90
 ./a.out
 gnuplot plot
+gnuplot spatio
 
 #ls *.eps > eps_files
 #for i in $(cat eps_files)
